@@ -154,20 +154,8 @@ body {
 }
 
 /* ===================================
-   Top Header (social icons)
+   Social icons (used in footer)
 =================================== */
-.top-header {
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  margin-bottom: 28px;
-}
-
-.top-header__socials {
-  display: flex;
-  gap: 10px;
-}
-
 .social-icon {
   width: 36px;
   height: 36px;
