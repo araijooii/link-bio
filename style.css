@@ -756,6 +756,16 @@ svg.marquee__sep {
   font-size: 12px;
   color: var(--text-secondary);
   text-align: center;
+}
+
+.footer__socials {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.footer p {
   opacity: 0.6;
 }
 
