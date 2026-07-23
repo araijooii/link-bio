@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Igor Araujo — Designer Multidisciplinar</title>
+  <title>Igor Araujo • Designer Multidisciplinar</title>
 
   <!-- SEO -->
   <meta name="description" content="Designer Multidisciplinar especializado em Branding, IA e Tecnologia. Links profissionais de Igor Araujo." />
@@ -13,7 +13,7 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Igor Araujo — Designer Multidisciplinar" />
+  <meta property="og:title" content="Igor Araujo • Designer Multidisciplinar" />
   <meta property="og:description" content="Designer Multidisciplinar especializado em Branding, IA e Tecnologia." />
   <meta property="og:image" content="assets/images/og-image.jpg" />
   <meta property="og:url" content="https://igoraraujo.com" />
@@ -21,7 +21,7 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Igor Araujo — Designer Multidisciplinar" />
+  <meta name="twitter:title" content="Igor Araujo • Designer Multidisciplinar" />
   <meta name="twitter:description" content="Designer Multidisciplinar especializado em Branding, IA e Tecnologia." />
   <meta name="twitter:image" content="assets/images/og-image.jpg" />
 
@@ -34,18 +34,27 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Inline theme init — prevents flash of wrong theme before CSS loads -->
+  <!-- Inline theme init: prevents flash of wrong theme before CSS loads -->
   <script>
     (function () {
       var s = localStorage.getItem('theme');
-      var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      document.documentElement.setAttribute('data-theme', s || (d ? 'dark' : 'light'));
+      document.documentElement.setAttribute('data-theme', s || 'dark');
     })();
   </script>
 
-  <link rel="stylesheet" href="style.css?v=2" />
+  <link rel="stylesheet" href="style.css?v=5" />
 </head>
 <body>
+
+  <!-- Ícone do leão, reutilizado no avatar e nas fitas -->
+  <svg style="display:none" aria-hidden="true">
+    <symbol id="icon-lion" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3.2c-1.3 0-2.4.8-2.8 2C7.9 5.5 6.7 6.4 6.3 7.7c-1.5.2-2.7 1.5-2.7 3.1 0 .9.4 1.7 1 2.3-.3.6-.4 1.2-.4 1.9 0 2.4 2 4.4 4.6 4.4h6.4c2.5 0 4.6-2 4.6-4.4 0-.7-.1-1.3-.4-1.9.6-.6 1-1.4 1-2.3 0-1.6-1.2-2.9-2.7-3.1-.4-1.3-1.6-2.2-2.9-2.5-.4-1.2-1.5-2-2.8-2z"/>
+      <circle cx="9.4" cy="12.1" r=".7" fill="currentColor"/>
+      <circle cx="14.6" cy="12.1" r=".7" fill="currentColor"/>
+      <path d="M12 13.3v1.1M10.4 15.6c.4.4 1 .6 1.6.6s1.2-.2 1.6-.6"/>
+    </symbol>
+  </svg>
 
   <!-- Theme Toggle -->
   <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema claro/escuro" title="Alternar tema">
@@ -71,13 +80,14 @@
 
     <!-- Hero -->
     <section class="hero" aria-label="Perfil">
-      <!-- Troque assets/images/profile.jpg pela sua foto — enquanto não existir, mostra o avatar com iniciais -->
+      <!-- Troque assets/images/profile.jpg pela sua foto, enquanto não existir, mostra o avatar com iniciais -->
       <div class="avatar-wrapper animate-fade-up" style="--delay: 0ms">
         <div class="avatar avatar--photo">
           <span class="avatar__initials" aria-hidden="true">IA</span>
           <img class="avatar__img" src="assets/images/profile.jpg" alt="Foto de Igor Araujo" onerror="this.remove()" />
         </div>
         <div class="avatar-ring" aria-hidden="true"></div>
+        <span class="avatar-badge" aria-hidden="true"><svg><use href="#icon-lion"/></svg></span>
       </div>
 
       <h1 class="name animate-fade-up" style="--delay: 80ms">Igor Araujo</h1>
@@ -91,13 +101,129 @@
       </p>
     </section>
 
+    <!-- Contato: fica logo no topo, é o que as pessoas mais procuram ao abrir o link -->
+    <span class="kicker links-kicker animate-fade-up" style="--delay: 220ms">CONTATO</span>
+    <nav class="links" aria-label="Links profissionais">
+
+      <a href="https://wa.me/5527988112354?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20mais%20sobre%20o%20seu%20trabalho%2C%20Igor." target="_blank" rel="noopener noreferrer"
+         class="link-card animate-fade-up" style="--delay: 240ms" data-label="WhatsApp">
+        <span class="link-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </span>
+        <span class="link-card__content">
+          <span class="link-card__title">WhatsApp</span>
+          <span class="link-card__desc">Fale diretamente comigo</span>
+        </span>
+        <span class="link-card__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a href="https://www.linkedin.com/in/igor-araujo-rafael-299566207/" target="_blank" rel="noopener noreferrer"
+         class="link-card animate-fade-up" style="--delay: 280ms" data-label="LinkedIn">
+        <span class="link-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </span>
+        <span class="link-card__content">
+          <span class="link-card__title">LinkedIn</span>
+          <span class="link-card__desc">Rede profissional e carreira</span>
+        </span>
+        <span class="link-card__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a href="mailto:mkt.igor2022@gmail.com"
+         class="link-card animate-fade-up" style="--delay: 320ms" data-label="Email">
+        <span class="link-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </span>
+        <span class="link-card__content">
+          <span class="link-card__title">Contato por Email</span>
+          <span class="link-card__desc">Projetos, parcerias e colaborações</span>
+        </span>
+        <span class="link-card__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a href="https://www.behance.net/igoraraujo8" target="_blank" rel="noopener noreferrer"
+         class="link-card animate-fade-up" style="--delay: 360ms" data-label="Behance">
+        <span class="link-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029H23.7zM15.971 13h4.06c-.08-1.95-1.361-2.9-2.1-2.9-1.265 0-1.836.936-1.96 2.9zM7.44 10.852c.924-.364 1.475-.888 1.475-2.017 0-2.263-1.793-2.835-3.726-2.835H0V20h5.709c1.963 0 4.147-.783 4.147-3.191 0-1.545-.87-2.677-2.416-2.957zM2.302 8h2.957c.63 0 1.305.278 1.305 1.124 0 .773-.534 1.15-1.305 1.15H2.302V8zm3.38 9.25H2.302v-2.75h3.38c.87 0 1.603.42 1.603 1.375 0 .955-.733 1.375-1.603 1.375z"/></svg>
+        </span>
+        <span class="link-card__content">
+          <span class="link-card__title">Behance</span>
+          <span class="link-card__desc">Projetos e cases criativos</span>
+        </span>
+        <span class="link-card__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+      <a href="https://www.instagram.com/igoraraujo_dg/" target="_blank" rel="noopener noreferrer"
+         class="link-card animate-fade-up" style="--delay: 400ms" data-label="Instagram">
+        <span class="link-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </span>
+        <span class="link-card__content">
+          <span class="link-card__title">Instagram</span>
+          <span class="link-card__desc">Inspirações e processo criativo</span>
+        </span>
+        <span class="link-card__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+
+    </nav>
+
+    <!-- Fitas de atributos, uma em cada direção. Edite os itens (repetidos nos dois grupos de cada fita) pra mudar o que passa -->
+    <div class="marquee-stack reveal">
+      <div class="marquee marquee--fwd" aria-label="Áreas de atuação">
+        <div class="marquee__track">
+          <span class="marquee__group">
+            <span class="marquee__item">Branding</span><svg class="marquee__sep" aria-hidden="true"><use href="#icon-lion"/></svg>
+            <span class="marquee__item">Identidade Visual</span><svg class="marquee__sep" aria-hidden="true"><use href="#icon-lion"/></svg>
+            <span class="marquee__item">Growth Design</span><svg class="marquee__sep" aria-hidden="true"><use href="#icon-lion"/></svg>
+            <span class="marquee__item">Inteligência Artificial</span><svg class="marquee__sep" aria-hidden="true"><use href="#icon-lion"/></svg>
+            <span class="marquee__item">UI/UX</span><svg class="marquee__sep" aria-hidden="true"><use href="#icon-lion"/></svg>
+          </span>
+          <span class="marquee__group" aria-hidden="true">
+            <span class="marquee__item">Branding</span><svg class="marquee__sep" aria-hidden="true"><use href="#icon-lion"/></svg>
+            <span class="marquee__item">Identidade Visual</span><svg class="marquee__sep" aria-hidden="true"><use href="#icon-lion"/></svg>
+            <span class="marquee__item">Growth Design</span><svg class="marquee__sep" aria-hidden="true"><use href="#icon-lion"/></svg>
+            <span class="marquee__item">Inteligência Artificial</span><svg class="marquee__sep" aria-hidden="true"><use href="#icon-lion"/></svg>
+            <span class="marquee__item">UI/UX</span><svg class="marquee__sep" aria-hidden="true"><use href="#icon-lion"/></svg>
+          </span>
+        </div>
+      </div>
+      <div class="marquee marquee--rev" aria-label="Áreas de atuação">
+        <div class="marquee__track">
+          <span class="marquee__group">
+            <span class="marquee__item">Branding</span><svg class="marquee__sep" aria-hidden="true"><use href="#icon-lion"/></svg>
+            <span class="marquee__item">Identidade Visual</span><svg class="marquee__sep" aria-hidden="true"><use href="#icon-lion"/></svg>
+            <span class="marquee__item">Growth Design</span><svg class="marquee__sep" aria-hidden="true"><use href="#icon-lion"/></svg>
+            <span class="marquee__item">Inteligência Artificial</span><svg class="marquee__sep" aria-hidden="true"><use href="#icon-lion"/></svg>
+            <span class="marquee__item">UI/UX</span><svg class="marquee__sep" aria-hidden="true"><use href="#icon-lion"/></svg>
+          </span>
+          <span class="marquee__group" aria-hidden="true">
+            <span class="marquee__item">Branding</span><svg class="marquee__sep" aria-hidden="true"><use href="#icon-lion"/></svg>
+            <span class="marquee__item">Identidade Visual</span><svg class="marquee__sep" aria-hidden="true"><use href="#icon-lion"/></svg>
+            <span class="marquee__item">Growth Design</span><svg class="marquee__sep" aria-hidden="true"><use href="#icon-lion"/></svg>
+            <span class="marquee__item">Inteligência Artificial</span><svg class="marquee__sep" aria-hidden="true"><use href="#icon-lion"/></svg>
+            <span class="marquee__item">UI/UX</span><svg class="marquee__sep" aria-hidden="true"><use href="#icon-lion"/></svg>
+          </span>
+        </div>
+      </div>
+    </div>
+
     <!-- Sobre -->
     <section class="about reveal" aria-label="Sobre">
       <span class="kicker">SOBRE</span>
       <h2 class="section-title">Quem sou eu</h2>
       <p class="about__text">
         Sou designer multidisciplinar apaixonado por transformar ideias em experiências visuais marcantes.
-        Trabalho na fronteira entre branding, tecnologia e inteligência artificial — criando identidades que
+        Trabalho na fronteira entre branding, tecnologia e inteligência artificial, criando identidades que
         unem estética, estratégia e propósito. Do conceito à execução, cada projeto nasce de uma pergunta simples:
         como isso pode gerar resultado de verdade?
       </p>
@@ -114,10 +240,10 @@
     <section class="work reveal" aria-label="Trabalhos selecionados">
       <span class="kicker">PORTFÓLIO</span>
       <h2 class="section-title">Trabalhos selecionados</h2>
-      <p class="section-subtitle">Uma amostra de identidade visual e branding. Veja mais no Behance.</p>
+      <p class="section-subtitle">Uma amostra de identidade visual e branding. Arraste para navegar e veja mais no Behance.</p>
 
       <!-- Troque assets/images/work-1.jpg (2.jpg, 3.jpg, 4.jpg) e os títulos/tags abaixo pelos seus projetos reais -->
-      <div class="work-grid">
+      <div class="work-carousel" id="workCarousel">
         <a class="work-card" href="https://www.behance.net/igoraraujo8" target="_blank" rel="noopener noreferrer">
           <span class="work-card__media">
             <span class="work-card__placeholder" aria-hidden="true">
@@ -172,82 +298,6 @@
       </div>
     </section>
 
-    <!-- Links -->
-    <span class="kicker links-kicker reveal">CONTATO</span>
-    <nav class="links" aria-label="Links profissionais">
-
-      <a href="https://wa.me/5527988112354?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20mais%20sobre%20o%20seu%20trabalho%2C%20Igor." target="_blank" rel="noopener noreferrer"
-         class="link-card animate-fade-up" style="--delay: 280ms" data-label="WhatsApp">
-        <span class="link-card__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        </span>
-        <span class="link-card__content">
-          <span class="link-card__title">WhatsApp</span>
-          <span class="link-card__desc">Fale diretamente comigo</span>
-        </span>
-        <span class="link-card__arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </span>
-      </a>
-
-      <a href="https://www.behance.net/igoraraujo8" target="_blank" rel="noopener noreferrer"
-         class="link-card animate-fade-up" style="--delay: 330ms" data-label="Behance">
-        <span class="link-card__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029H23.7zM15.971 13h4.06c-.08-1.95-1.361-2.9-2.1-2.9-1.265 0-1.836.936-1.96 2.9zM7.44 10.852c.924-.364 1.475-.888 1.475-2.017 0-2.263-1.793-2.835-3.726-2.835H0V20h5.709c1.963 0 4.147-.783 4.147-3.191 0-1.545-.87-2.677-2.416-2.957zM2.302 8h2.957c.63 0 1.305.278 1.305 1.124 0 .773-.534 1.15-1.305 1.15H2.302V8zm3.38 9.25H2.302v-2.75h3.38c.87 0 1.603.42 1.603 1.375 0 .955-.733 1.375-1.603 1.375z"/></svg>
-        </span>
-        <span class="link-card__content">
-          <span class="link-card__title">Behance</span>
-          <span class="link-card__desc">Projetos e cases criativos</span>
-        </span>
-        <span class="link-card__arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </span>
-      </a>
-
-      <a href="https://www.linkedin.com/in/igor-araujo-rafael-299566207/" target="_blank" rel="noopener noreferrer"
-         class="link-card animate-fade-up" style="--delay: 480ms" data-label="LinkedIn">
-        <span class="link-card__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </span>
-        <span class="link-card__content">
-          <span class="link-card__title">LinkedIn</span>
-          <span class="link-card__desc">Rede profissional e carreira</span>
-        </span>
-        <span class="link-card__arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </span>
-      </a>
-
-      <a href="https://www.instagram.com/igoraraujo_dg/" target="_blank" rel="noopener noreferrer"
-         class="link-card animate-fade-up" style="--delay: 530ms" data-label="Instagram">
-        <span class="link-card__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </span>
-        <span class="link-card__content">
-          <span class="link-card__title">Instagram</span>
-          <span class="link-card__desc">Inspirações e processo criativo</span>
-        </span>
-        <span class="link-card__arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </span>
-      </a>
-
-      <a href="mailto:mkt.igor2022@gmail.com"
-         class="link-card animate-fade-up" style="--delay: 580ms" data-label="Email">
-        <span class="link-card__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </span>
-        <span class="link-card__content">
-          <span class="link-card__title">Contato por Email</span>
-          <span class="link-card__desc">Projetos, parcerias e colaborações</span>
-        </span>
-        <span class="link-card__arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </span>
-      </a>
-
-    </nav>
-
     <!-- Footer -->
     <footer class="footer animate-fade-up" style="--delay: 660ms">
       <p>© <span id="year"></span> Igor Araujo</p>
@@ -255,6 +305,6 @@
 
   </main>
 
-  <script src="script.js?v=2"></script>
+  <script src="script.js?v=5"></script>
 </body>
 </html>

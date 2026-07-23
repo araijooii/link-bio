@@ -16,6 +16,8 @@
   --text-secondary: #86868B;
   --accent: #0071E3;
   --accent-hover: #0077ED;
+  --neon: #CBFF3D;
+  --neon-glow: rgba(203, 255, 61, 0.5);
   --shadow-card: 0 2px 20px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.05);
   --shadow-card-hover: 0 8px 40px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.06);
   --radius-card: 18px;
@@ -199,7 +201,7 @@ body {
   justify-content: center;
 }
 
-/* Photo avatar — img sits above the initials/gradient fallback;
+/* Photo avatar: img sits above the initials/gradient fallback;
    if the file is missing, onerror removes the <img> and the fallback shows through */
 .avatar__img {
   position: absolute;
@@ -222,6 +224,31 @@ body {
 @keyframes ring-pulse {
   0%, 100% { opacity: 0.6; transform: scale(1); }
   50%       { opacity: 1; transform: scale(1.03); }
+}
+
+/* Lion badge on the avatar */
+.avatar-badge {
+  position: absolute;
+  z-index: 2;
+  right: -2px;
+  bottom: -2px;
+  width: 30%;
+  height: 30%;
+  min-width: 26px;
+  min-height: 26px;
+  border-radius: 50%;
+  background: var(--neon);
+  border: 2.5px solid var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 12px var(--neon-glow);
+}
+
+.avatar-badge svg {
+  width: 58%;
+  height: 58%;
+  color: #0a1400;
 }
 
 /* Name */
@@ -287,6 +314,78 @@ body {
 }
 
 /* ===================================
+   Marquee (skills ribbons, two rows crossing directions)
+=================================== */
+.marquee-stack {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-top: 4px;
+  margin-bottom: 52px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.marquee {
+  overflow: hidden;
+  background: #0d1400;
+  border-top: 1px solid var(--neon-glow);
+  border-bottom: 1px solid var(--neon-glow);
+  padding: 12px 0;
+}
+
+.marquee--fwd { transform: rotate(-1.25deg); margin-bottom: -6px; }
+.marquee--rev { transform: rotate(1.25deg); }
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 26s linear infinite;
+}
+
+.marquee--rev .marquee__track {
+  animation-name: marquee-scroll-rev;
+  animation-duration: 22s;
+}
+
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+.marquee__group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.marquee__item {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--neon);
+  white-space: nowrap;
+  padding: 0 16px;
+}
+
+svg.marquee__sep {
+  flex-shrink: 0;
+  width: 15px;
+  height: 15px;
+  color: var(--neon);
+  opacity: 0.7;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes marquee-scroll-rev {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+/* ===================================
    About Section
 =================================== */
 .about {
@@ -332,16 +431,29 @@ body {
   margin-bottom: 56px;
 }
 
-.work-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+.work-carousel {
+  display: flex;
   gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scroll-behavior: smooth;
+  padding: 2px 2px 8px;
+  margin: -2px -2px 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.work-carousel::-webkit-scrollbar {
+  display: none;
 }
 
 .work-card {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  flex: 0 0 auto;
+  width: min(56vw, 220px);
+  scroll-snap-align: start;
   text-decoration: none;
   color: var(--text-primary);
   transition: var(--transition);
@@ -360,7 +472,8 @@ body {
 
 .work-card:hover .work-card__media {
   transform: translateY(-3px);
-  box-shadow: var(--shadow-card-hover);
+  box-shadow: var(--shadow-card-hover), 0 0 22px 1px var(--neon-glow);
+  border-color: var(--neon);
 }
 
 .work-card__placeholder {
@@ -461,12 +574,41 @@ body {
 
 .link-card:hover {
   transform: translateY(-2px) scale(1.01);
-  box-shadow: var(--shadow-card-hover);
-  border-color: rgba(0, 113, 227, 0.2);
+  box-shadow: var(--shadow-card-hover), 0 0 22px 1px var(--neon-glow);
+  border-color: var(--neon);
 }
 
 .link-card:hover::before {
   opacity: 1;
+}
+
+/* Neon glow ring that circles the card border on hover/touch */
+.link-card::after,
+.work-card__media::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(from 0deg, transparent 0%, var(--neon) 14%, transparent 30%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  animation: glow-spin 3s linear infinite;
+  animation-play-state: paused;
+}
+
+.link-card:hover::after,
+.work-card:hover .work-card__media::after {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+@keyframes glow-spin {
+  to { transform: rotate(360deg); }
 }
 
 .link-card:active {
@@ -475,26 +617,11 @@ body {
 }
 
 /* Per-card brand color tokens */
-.link-card[data-label="WhatsApp"]  { --brand: #25D366; --brand-bg: rgba(37,211,102,0.12); }
-.link-card[data-label="Behance"]   { --brand: #1769FF; --brand-bg: rgba(23,105,255,0.1); }
-.link-card[data-label="Portfólio"] { --brand: #0071E3; --brand-bg: rgba(0,113,227,0.1); }
-.link-card[data-label="GitHub"]    { --brand: #1a1a1a; --brand-bg: rgba(17,17,17,0.08); }
-.link-card[data-label="LinkedIn"]  { --brand: #0A66C2; --brand-bg: rgba(10,102,194,0.1); }
-.link-card[data-label="Instagram"] { --brand: #E1306C; --brand-bg: rgba(225,48,108,0.1); }
-.link-card[data-label="Email"]     { --brand: #FF6B35; --brand-bg: rgba(255,107,53,0.1); }
-
-/* Dark-mode GitHub icon needs inversion */
-[data-theme="dark"] .link-card[data-label="GitHub"] {
-  --brand: #E8E8EA;
-  --brand-bg: rgba(232,232,234,0.1);
-}
-
-@media (prefers-color-scheme: dark) {
-  .link-card[data-label="GitHub"] {
-    --brand: #E8E8EA;
-    --brand-bg: rgba(232,232,234,0.1);
-  }
-}
+.link-card[data-label="WhatsApp"]  { --brand: #25D366; --brand-bg: rgba(37,211,102,0.15); }
+.link-card[data-label="Behance"]   { --brand: #1769FF; --brand-bg: rgba(23,105,255,0.15); }
+.link-card[data-label="LinkedIn"]  { --brand: #0A66C2; --brand-bg: rgba(10,102,194,0.15); }
+.link-card[data-label="Instagram"] { --brand: #E1306C; --brand-bg: rgba(225,48,108,0.15); }
+.link-card[data-label="Email"]     { --brand: #FF6B35; --brand-bg: rgba(255,107,53,0.15); }
 
 /* Icon */
 .link-card__icon {
@@ -736,6 +863,19 @@ body {
     transition: none;
     opacity: 1;
     transform: none;
+  }
+
+  .marquee__track {
+    animation: none;
+  }
+
+  .work-carousel {
+    scroll-behavior: auto;
+  }
+
+  .link-card::after,
+  .work-card__media::after {
+    animation: none;
   }
 
   .link-card,
