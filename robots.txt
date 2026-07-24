@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://araijooii.github.io/igoraraujo_dj/sitemap.xml
+Sitemap: https://araijooii.github.io/link-bio/sitemap.xml
