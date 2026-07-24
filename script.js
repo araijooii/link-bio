@@ -51,35 +51,36 @@ document.querySelectorAll('.link-card').forEach(function (card) {
 /* ===================================
    Project Modal (case detail)
 =================================== */
-/* Placeholder data: troque título/categoria/ano/descrição/imagem pelos seus projetos reais.
-   O índice de cada item bate com o atributo data-project do botão correspondente no HTML. */
+/* Placeholder data: troque título/categoria/ano/descrição/imagens pelos seus projetos reais.
+   O índice de cada item bate com o atributo data-project do botão correspondente no HTML.
+   "images" é a galeria do case: pode ter quantas fotos quiser, a primeira é a que abre selecionada. */
 const PROJECTS = [
   {
     title: 'Identidade Visual 01',
     tag: 'Branding',
     year: '2025',
-    image: 'assets/images/work-1.svg',
+    images: ['assets/images/work-1.svg', 'assets/images/work-2.svg', 'assets/images/work-3.svg'],
     description: 'Este é um espaço reservado. Substitua por um resumo real do desafio, do processo criativo e do resultado que esse projeto entregou pro cliente.',
   },
   {
     title: 'Identidade Visual 02',
     tag: 'Naming & Logo',
     year: '2025',
-    image: 'assets/images/work-2.svg',
+    images: ['assets/images/work-2.svg', 'assets/images/work-3.svg', 'assets/images/work-1.svg'],
     description: 'Este é um espaço reservado. Substitua por um resumo real do desafio, do processo criativo e do resultado que esse projeto entregou pro cliente.',
   },
   {
     title: 'Identidade Visual 03',
     tag: 'UI/UX',
     year: '2025',
-    image: 'assets/images/work-3.svg',
+    images: ['assets/images/work-3.svg', 'assets/images/work-4.svg', 'assets/images/work-1.svg'],
     description: 'Este é um espaço reservado. Substitua por um resumo real do desafio, do processo criativo e do resultado que esse projeto entregou pro cliente.',
   },
   {
     title: 'Identidade Visual 04',
     tag: 'Social Media',
     year: '2025',
-    image: 'assets/images/work-4.svg',
+    images: ['assets/images/work-4.svg', 'assets/images/work-1.svg', 'assets/images/work-2.svg'],
     description: 'Este é um espaço reservado. Substitua por um resumo real do desafio, do processo criativo e do resultado que esse projeto entregou pro cliente.',
   },
 ];
@@ -87,16 +88,39 @@ const PROJECTS = [
 const projectModal = document.getElementById('projectModal');
 let lastFocusedTrigger = null;
 
+function selectProjectImage(src, thumbButton) {
+  document.getElementById('projectModalImg').src = src;
+  projectModal.querySelectorAll('.project-modal__thumb').forEach(function (t) {
+    t.classList.toggle('is-active', t === thumbButton);
+  });
+}
+
 function openProjectModal(index) {
   const project = PROJECTS[index];
   if (!project || !projectModal) return;
 
-  document.getElementById('projectModalImg').src = project.image;
   document.getElementById('projectModalImg').alt = project.title;
   document.getElementById('projectModalTag').textContent = project.tag;
   document.getElementById('projectModalTitle').textContent = project.title;
   document.getElementById('projectModalMeta').textContent = project.tag + ' · ' + project.year;
   document.getElementById('projectModalDesc').textContent = project.description;
+
+  const thumbsEl = document.getElementById('projectModalThumbs');
+  thumbsEl.innerHTML = '';
+  project.images.forEach(function (src, i) {
+    const thumb = document.createElement('button');
+    thumb.type = 'button';
+    thumb.className = 'project-modal__thumb' + (i === 0 ? ' is-active' : '');
+    thumb.setAttribute('aria-label', 'Ver imagem ' + (i + 1) + ' de ' + project.images.length);
+    const thumbImg = document.createElement('img');
+    thumbImg.src = src;
+    thumbImg.alt = '';
+    thumb.appendChild(thumbImg);
+    thumb.addEventListener('click', function () { selectProjectImage(src, thumb); });
+    thumbsEl.appendChild(thumb);
+  });
+  thumbsEl.hidden = project.images.length < 2;
+  selectProjectImage(project.images[0], thumbsEl.querySelector('.project-modal__thumb'));
 
   projectModal.classList.add('is-open');
   projectModal.setAttribute('aria-hidden', 'false');
