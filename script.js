@@ -71,69 +71,6 @@ if ('IntersectionObserver' in window) {
 }
 
 /* ===================================
-   Work Carousel, slow autoplay, pauses on hover/touch
-=================================== */
-(function () {
-  const track = document.getElementById('workCarousel');
-  if (!track) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  let playing = false;
-  let paused = false;
-  let rafId = null;
-
-  function step() {
-    rafId = null;
-    if (!playing || paused) return;
-    const max = track.scrollWidth - track.clientWidth;
-    if (max <= 0) { rafId = requestAnimationFrame(step); return; }
-
-    if (track.scrollLeft >= max - 1) {
-      paused = true;
-      setTimeout(function () {
-        track.scrollTo({ left: 0, behavior: 'smooth' });
-        setTimeout(function () { paused = false; rafId = requestAnimationFrame(step); }, 700);
-      }, 1000);
-      return;
-    }
-
-    track.scrollLeft += 0.6;
-    rafId = requestAnimationFrame(step);
-  }
-
-  function start() {
-    if (playing) return;
-    playing = true;
-    if (!rafId) rafId = requestAnimationFrame(step);
-  }
-
-  function resume() {
-    if (!playing || !paused) return;
-    paused = false;
-    if (!rafId) rafId = requestAnimationFrame(step);
-  }
-
-  track.addEventListener('pointerenter', function () { paused = true; });
-  track.addEventListener('pointerleave', resume);
-  track.addEventListener('touchstart', function () { paused = true; }, { passive: true });
-  track.addEventListener('touchend', function () { setTimeout(resume, 2500); });
-
-  if ('IntersectionObserver' in window) {
-    const carouselObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          start();
-          carouselObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.4 });
-    carouselObserver.observe(track);
-  } else {
-    start();
-  }
-})();
-
-/* ===================================
    Trigger animations after fonts load
 =================================== */
 if (document.fonts && document.fonts.ready) {
