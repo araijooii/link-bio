@@ -64,7 +64,7 @@
     })();
   </script>
 
-  <link rel="stylesheet" href="style.css?v=15" />
+  <link rel="stylesheet" href="style.css?v=16" />
 
   <!-- Structured data: helps Google show a richer result for a personal profile -->
   <script type="application/ld+json">
@@ -130,6 +130,16 @@
 
     <!-- Hero -->
     <section class="hero" aria-label="Perfil">
+      <!-- Vídeo ambiente do banner: para ativar, salve o arquivo em assets/video/hero-loop.mp4 (e opcionalmente .webm)
+           e descomente as tags <source> abaixo. Sem vídeo, mostra o gradiente animado como fundo. -->
+      <div class="hero__bg" aria-hidden="true">
+        <video class="hero__video" autoplay muted loop playsinline preload="none">
+          <!-- <source src="assets/video/hero-loop.webm" type="video/webm"> -->
+          <!-- <source src="assets/video/hero-loop.mp4" type="video/mp4"> -->
+        </video>
+        <div class="hero__bg-scrim"></div>
+      </div>
+
       <!-- Troque assets/images/profile.jpg pela sua foto, enquanto não existir, mostra o avatar com iniciais -->
       <div class="avatar-wrapper animate-fade-up" style="--delay: 0ms">
         <div class="avatar avatar--photo">
@@ -202,67 +212,100 @@
     <section class="work reveal" aria-label="Trabalhos selecionados">
       <span class="kicker">PORTFÓLIO</span>
       <h2 class="section-title">Trabalhos selecionados</h2>
-      <p class="section-subtitle">Uma amostra de identidade visual e branding. Veja mais no Behance.</p>
+      <p class="section-subtitle">Clique em um projeto pra ver o case completo.</p>
 
-      <!-- Placeholders abstratos só pra pré-visualizar os banners preenchidos. Troque assets/images/work-1.svg (2, 3, 4) e os títulos/tags abaixo pelos seus projetos reais -->
+      <!-- Placeholders abstratos, e os dados de cada case (título/categoria/ano/descrição) estão
+           duplicados em PROJECTS no script.js. Troque as imagens em assets/images/work-1.svg (2, 3, 4)
+           e os dois lugares pelos seus projetos reais. -->
       <div class="work-banners">
-        <a class="work-banner" href="https://www.behance.net/igoraraujo8" target="_blank" rel="noopener noreferrer">
+        <button type="button" class="work-banner" data-project="0" aria-haspopup="dialog">
           <span class="work-banner__media">
             <span class="work-banner__placeholder" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
             </span>
             <img src="assets/images/work-1.svg" alt="Projeto de identidade visual 01" width="400" height="500" loading="lazy" onerror="this.remove()" />
-            <span class="work-banner__shade" aria-hidden="true"></span>
+            <span class="work-banner__shade" aria-hidden="true">
+              <span class="work-banner__cta">Ver case completo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </span>
           </span>
           <span class="work-banner__info">
             <span class="work-banner__title">Identidade Visual 01</span>
             <span class="work-banner__tag">Branding</span>
           </span>
-        </a>
+        </button>
 
-        <a class="work-banner" href="https://www.behance.net/igoraraujo8" target="_blank" rel="noopener noreferrer">
+        <button type="button" class="work-banner" data-project="1" aria-haspopup="dialog">
           <span class="work-banner__media">
             <span class="work-banner__placeholder" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
             </span>
             <img src="assets/images/work-2.svg" alt="Projeto de identidade visual 02" width="400" height="500" loading="lazy" onerror="this.remove()" />
-            <span class="work-banner__shade" aria-hidden="true"></span>
+            <span class="work-banner__shade" aria-hidden="true">
+              <span class="work-banner__cta">Ver case completo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </span>
           </span>
           <span class="work-banner__info">
             <span class="work-banner__title">Identidade Visual 02</span>
             <span class="work-banner__tag">Naming &amp; Logo</span>
           </span>
-        </a>
+        </button>
 
-        <a class="work-banner" href="https://www.behance.net/igoraraujo8" target="_blank" rel="noopener noreferrer">
+        <button type="button" class="work-banner" data-project="2" aria-haspopup="dialog">
           <span class="work-banner__media">
             <span class="work-banner__placeholder" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
             </span>
             <img src="assets/images/work-3.svg" alt="Projeto de identidade visual 03" width="400" height="500" loading="lazy" onerror="this.remove()" />
-            <span class="work-banner__shade" aria-hidden="true"></span>
+            <span class="work-banner__shade" aria-hidden="true">
+              <span class="work-banner__cta">Ver case completo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </span>
           </span>
           <span class="work-banner__info">
             <span class="work-banner__title">Identidade Visual 03</span>
             <span class="work-banner__tag">UI/UX</span>
           </span>
-        </a>
+        </button>
 
-        <a class="work-banner" href="https://www.behance.net/igoraraujo8" target="_blank" rel="noopener noreferrer">
+        <button type="button" class="work-banner" data-project="3" aria-haspopup="dialog">
           <span class="work-banner__media">
             <span class="work-banner__placeholder" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
             </span>
             <img src="assets/images/work-4.svg" alt="Projeto de identidade visual 04" width="400" height="500" loading="lazy" onerror="this.remove()" />
-            <span class="work-banner__shade" aria-hidden="true"></span>
+            <span class="work-banner__shade" aria-hidden="true">
+              <span class="work-banner__cta">Ver case completo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </span>
           </span>
           <span class="work-banner__info">
             <span class="work-banner__title">Identidade Visual 04</span>
             <span class="work-banner__tag">Social Media</span>
           </span>
-        </a>
+        </button>
       </div>
     </section>
+
+    <!-- Modal de case, preenchido via PROJECTS em script.js -->
+    <div class="project-modal" id="projectModal" aria-hidden="true">
+      <div class="project-modal__backdrop" data-close-modal></div>
+      <div class="project-modal__panel" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+        <button type="button" class="project-modal__close" data-close-modal aria-label="Fechar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+        <div class="project-modal__media">
+          <img id="projectModalImg" src="" alt="" />
+        </div>
+        <div class="project-modal__body">
+          <span class="project-modal__tag" id="projectModalTag"></span>
+          <h3 class="project-modal__title" id="projectModalTitle"></h3>
+          <p class="project-modal__meta" id="projectModalMeta"></p>
+          <p class="project-modal__desc" id="projectModalDesc"></p>
+          <a class="project-modal__link" id="projectModalLink" href="https://www.behance.net/igoraraujo8" target="_blank" rel="noopener noreferrer">
+            Ver no Behance
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
 
     <!-- Depoimentos -->
     <section class="testimonials reveal" aria-label="Depoimentos de clientes">
@@ -423,6 +466,63 @@
       </div>
     </div>
 
+    <!-- FAQ: rascunho de perguntas/respostas pra você revisar e ajustar antes de publicar de vez -->
+    <section class="faq reveal" aria-label="Perguntas frequentes">
+      <span class="kicker">FAQ</span>
+      <h2 class="section-title">Perguntas frequentes</h2>
+      <p class="section-subtitle">Rascunho pra você revisar, ajuste o que não bater com a realidade.</p>
+
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary class="faq-item__question">
+            Quais serviços você oferece?
+            <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </summary>
+          <p class="faq-item__answer">Branding, identidade visual, UI/UX e growth design, com inteligência artificial generativa aplicada ao processo criativo quando faz sentido pro projeto.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-item__question">
+            Como funciona o processo de trabalho?
+            <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </summary>
+          <p class="faq-item__answer">Começa com um briefing pra entender o negócio e o objetivo do projeto, passa por pesquisa e conceito, depois refinamento com base no seu retorno, até a entrega final dos arquivos.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-item__question">
+            Qual o prazo médio de um projeto?
+            <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </summary>
+          <p class="faq-item__answer">Depende do escopo de cada projeto. Depois do briefing eu passo um prazo específico, mas a média fica entre duas e seis semanas dependendo da complexidade.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-item__question">
+            Você atende só na minha região ou qualquer lugar do Brasil?
+            <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </summary>
+          <p class="faq-item__answer">Atendo remoto, então pode ser qualquer lugar do Brasil. Toda a comunicação acontece por WhatsApp e videochamada.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-item__question">
+            Quantas rodadas de revisão estão incluídas?
+            <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </summary>
+          <p class="faq-item__answer">Cada etapa do projeto passa por rodadas de ajuste com base no seu retorno, pra garantir que o resultado final reflita o que você precisa.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-item__question">
+            Como funciona o orçamento?
+            <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </summary>
+          <p class="faq-item__answer">Cada projeto tem um escopo diferente, então o valor é definido depois de entender sua necessidade. Me manda uma mensagem contando o que você precisa que te retorno com uma proposta.</p>
+        </details>
+      </div>
+    </section>
+
     <!-- Contato: agora vem por último, depois de sobre e trabalhos -->
     <span class="kicker links-kicker reveal">CONTATO</span>
     <h2 class="section-title links-title reveal">Vamos trabalhar juntos</h2>
@@ -530,6 +630,6 @@
 
   </main>
 
-  <script src="script.js?v=6"></script>
+  <script src="script.js?v=7"></script>
 </body>
 </html>

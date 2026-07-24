@@ -49,6 +49,89 @@ document.querySelectorAll('.link-card').forEach(function (card) {
 });
 
 /* ===================================
+   Project Modal (case detail)
+=================================== */
+/* Placeholder data: troque título/categoria/ano/descrição/imagem pelos seus projetos reais.
+   O índice de cada item bate com o atributo data-project do botão correspondente no HTML. */
+const PROJECTS = [
+  {
+    title: 'Identidade Visual 01',
+    tag: 'Branding',
+    year: '2025',
+    image: 'assets/images/work-1.svg',
+    description: 'Este é um espaço reservado. Substitua por um resumo real do desafio, do processo criativo e do resultado que esse projeto entregou pro cliente.',
+  },
+  {
+    title: 'Identidade Visual 02',
+    tag: 'Naming & Logo',
+    year: '2025',
+    image: 'assets/images/work-2.svg',
+    description: 'Este é um espaço reservado. Substitua por um resumo real do desafio, do processo criativo e do resultado que esse projeto entregou pro cliente.',
+  },
+  {
+    title: 'Identidade Visual 03',
+    tag: 'UI/UX',
+    year: '2025',
+    image: 'assets/images/work-3.svg',
+    description: 'Este é um espaço reservado. Substitua por um resumo real do desafio, do processo criativo e do resultado que esse projeto entregou pro cliente.',
+  },
+  {
+    title: 'Identidade Visual 04',
+    tag: 'Social Media',
+    year: '2025',
+    image: 'assets/images/work-4.svg',
+    description: 'Este é um espaço reservado. Substitua por um resumo real do desafio, do processo criativo e do resultado que esse projeto entregou pro cliente.',
+  },
+];
+
+const projectModal = document.getElementById('projectModal');
+let lastFocusedTrigger = null;
+
+function openProjectModal(index) {
+  const project = PROJECTS[index];
+  if (!project || !projectModal) return;
+
+  document.getElementById('projectModalImg').src = project.image;
+  document.getElementById('projectModalImg').alt = project.title;
+  document.getElementById('projectModalTag').textContent = project.tag;
+  document.getElementById('projectModalTitle').textContent = project.title;
+  document.getElementById('projectModalMeta').textContent = project.tag + ' · ' + project.year;
+  document.getElementById('projectModalDesc').textContent = project.description;
+
+  projectModal.classList.add('is-open');
+  projectModal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+  projectModal.querySelector('.project-modal__close').focus();
+}
+
+function closeProjectModal() {
+  if (!projectModal) return;
+  projectModal.classList.remove('is-open');
+  projectModal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('modal-open');
+  if (lastFocusedTrigger) lastFocusedTrigger.focus();
+}
+
+document.querySelectorAll('.work-banner[data-project]').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    lastFocusedTrigger = btn;
+    openProjectModal(Number(btn.dataset.project));
+  });
+});
+
+if (projectModal) {
+  projectModal.querySelectorAll('[data-close-modal]').forEach(function (el) {
+    el.addEventListener('click', closeProjectModal);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && projectModal.classList.contains('is-open')) {
+      closeProjectModal();
+    }
+  });
+}
+
+/* ===================================
    Scroll Reveal (About / Work sections)
 =================================== */
 if ('IntersectionObserver' in window) {
@@ -68,6 +151,17 @@ if ('IntersectionObserver' in window) {
   document.querySelectorAll('.reveal').forEach(function (el) {
     el.classList.add('is-visible');
   });
+}
+
+/* ===================================
+   Hero ambient video (once a real source is added)
+=================================== */
+const heroVideo = document.querySelector('.hero__video');
+if (heroVideo && heroVideo.querySelector('source')) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    heroVideo.removeAttribute('autoplay');
+    heroVideo.pause();
+  }
 }
 
 /* ===================================
