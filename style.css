@@ -267,6 +267,29 @@ body {
   50%       { opacity: 1; transform: scale(1.03); }
 }
 
+/* Subtle moving light traveling around the avatar ring and CTA button.
+   @supports-gated: browsers without mask-composite just show no ring, never a broken solid shape. */
+@supports ((mask-composite: exclude) or (-webkit-mask-composite: xor)) {
+  .avatar-ring::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: conic-gradient(from 0deg, transparent 0%, rgba(var(--accent-rgb), 0.85) 8%, transparent 24%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    animation: moving-border-spin 6s linear infinite;
+    pointer-events: none;
+  }
+}
+
+@keyframes moving-border-spin {
+  to { transform: rotate(360deg); }
+}
+
 /* Lion badge on the avatar */
 .avatar-badge {
   position: absolute;
@@ -920,7 +943,7 @@ svg.marquee__sep {
     transform: none;
   }
 
-  .orb-1, .orb-2, .avatar-ring {
+  .orb-1, .orb-2, .avatar-ring, .avatar-ring::before {
     animation: none;
   }
 
