@@ -64,7 +64,7 @@
     })();
   </script>
 
-  <link rel="stylesheet" href="style.css?v=17" />
+  <link rel="stylesheet" href="style.css?v=18" />
 
   <!-- Structured data: helps Google show a richer result for a personal profile -->
   <script type="application/ld+json">
@@ -294,7 +294,6 @@
         <div class="project-modal__media">
           <img id="projectModalImg" src="" alt="" />
         </div>
-        <div class="project-modal__thumbs" id="projectModalThumbs"></div>
         <div class="project-modal__body">
           <span class="project-modal__tag" id="projectModalTag"></span>
           <h3 class="project-modal__title" id="projectModalTitle"></h3>
@@ -305,6 +304,8 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
+        <!-- Resto das imagens do case, empilhadas em largura total, tipo scroll de projeto no Behance -->
+        <div class="project-modal__gallery" id="projectModalGallery"></div>
       </div>
     </div>
 
@@ -631,6 +632,6 @@
 
   </main>
 
-  <script src="script.js?v=8"></script>
+  <script src="script.js?v=9"></script>
 </body>
 </html>
