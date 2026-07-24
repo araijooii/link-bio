@@ -430,6 +430,11 @@ svg.marquee__sep {
   margin-bottom: 20px;
 }
 
+.about__text strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
 .tag-list {
   display: flex;
   flex-wrap: wrap;
