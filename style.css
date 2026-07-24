@@ -300,11 +300,20 @@ body {
 
 /* Tagline */
 .tagline {
-  font-size: clamp(12px, 2.5vw, 13px);
-  font-weight: 500;
-  color: var(--accent);
+  font-size: clamp(17px, 3.6vw, 21px);
+  font-weight: 700;
   margin-bottom: 16px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.01em;
+  background: linear-gradient(90deg, var(--accent), var(--neon), var(--accent));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: tagline-shine 5s linear infinite;
+}
+
+@keyframes tagline-shine {
+  to { background-position: -200% center; }
 }
 
 /* Bio */
@@ -850,6 +859,11 @@ svg.marquee__sep {
    Reduced motion
 =================================== */
 @media (prefers-reduced-motion: reduce) {
+  .tagline {
+    animation: none;
+    background-position: 0 center;
+  }
+
   .animate-fade-up {
     animation: none;
     opacity: 1;
